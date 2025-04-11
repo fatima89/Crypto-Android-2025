@@ -18,8 +18,11 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.coincap_app.models.Asset
 import com.example.coincap_app.ui.theme.CoinCapAppTheme
+import com.example.coincap_app.views.AssetsList
 import com.example.coincap_app.views.AssetRow
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,34 +30,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             CoinCapAppTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Column(
-                        verticalArrangement = Arrangement.Center,
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        AssetRow(
-                            Asset(
-                                id="1",
-                                name ="BTC",
-                                symbol="Bitcoin",
-                                price="87800",
-                                percentage=5.38
+                    AssetsList()
 
-
-                            )
-                        )
-                        Spacer(modifier = Modifier.size(16.dp))
-                        AssetRow(
-                            Asset(
-                                id="2",
-                                name ="ETH",
-                                symbol="Ethereum",
-                                price="1800",
-                                percentage=-8.28
-
-                            )
-                        )
-
-                    }
                 }
             }
         }
