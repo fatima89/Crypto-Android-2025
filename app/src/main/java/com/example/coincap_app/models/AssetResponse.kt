@@ -8,7 +8,6 @@ val id:String,
 val name: String,
 val symbol: String,
 val priceUsd: String,
-val percentage: String,
 val changePercent24Hr : String
 
 ) {

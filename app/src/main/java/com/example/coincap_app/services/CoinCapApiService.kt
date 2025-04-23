@@ -1,7 +1,6 @@
 package com.example.coincap_app.services
 
 import javax.inject.Inject
-import com.example.coincap_app.models.Asset
 import com.example.coincap_app.models.AssetsResponse
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

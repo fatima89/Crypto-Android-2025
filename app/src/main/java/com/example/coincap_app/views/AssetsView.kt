@@ -1,19 +1,16 @@
 package com.example.coincap_app.views
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Icon
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -34,9 +31,11 @@ import com.example.coincap_app.models.Asset
 import com.example.coincap_app.viewModels.AssetsListViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.navigation.NavHostController
+import com.example.coincap_app.navigation.BottomNavigationItem
 
 @Composable
-fun AssetsList(viewModel: AssetsListViewModel = hiltViewModel() ){
+fun AssetsList(viewModel: AssetsListViewModel = hiltViewModel(), navController: NavHostController ){
 
 //    val assets = viewModel.assets.collectAsState()
     val assets by viewModel.assets.collectAsState()
@@ -46,20 +45,23 @@ fun AssetsList(viewModel: AssetsListViewModel = hiltViewModel() ){
             .fillMaxHeight()
             .background(MaterialTheme.colorScheme.onBackground)
     ){
-        items(assets, key = {it.id}){ asset ->
-            AssetRow(asset)
+        items(assets, key = {it.id} ) { asset ->
+            AssetRow(asset){ assetId ->
+                navController.navigate("${BottomNavigationItem.Home.route}/${assetId}")
+            }
 
         }
     }
 }
 
 @Composable
-fun AssetRow(asset: Asset) {
+fun AssetRow(asset: Asset, onClick:(String) -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
+            .clickable { onClick(asset.id) }
     ) {
         Box(
             modifier = Modifier
@@ -115,5 +117,5 @@ fun AssetRow(asset: Asset) {
 )
 @Composable
 fun AssetsListPreview() {
-    AssetsList()
+    //AssetsList()
 }

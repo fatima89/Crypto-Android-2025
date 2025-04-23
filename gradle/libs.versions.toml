@@ -11,6 +11,7 @@ activityCompose = "1.10.1"
 composeBom = "2024.09.00"
 hilt = "2.51.1"
 ktor ="3.1.2"
+coroutines = "1.9.0"
 hilt-navigation = "1.2.0"
 kotlinxSerializationJson = "1.6.3"
 
@@ -44,6 +45,9 @@ ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "kto
 ktor-serialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktor"}
 ktor-client-cio = {module = "io.ktor:ktor-client-cio", version.ref = "ktor"}
 ktor-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktor"}
+
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
